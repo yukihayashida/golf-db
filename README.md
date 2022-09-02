@@ -16,15 +16,15 @@
 ### 構成
  
 - DataSource
- - Google Sheets
- - CSV at Google Drive
+  - Google Sheets
+  - CSV at Google Drive
 - DWH
- - Google BigQuery
+  - Google BigQuery
 - ELT
- - dbt (CLI)
+  - dbt (CLI)
 - Workflow
- - Cloud Run
+  - Cloud Run
 - BI / Analytics
- - Goolgl Dataportal
+  - Goolgl Dataportal
 
 ※極力無料でやりたい
