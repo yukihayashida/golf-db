@@ -1,0 +1,18 @@
+/*
+name:   gss_play
+schema: 
+*/
+[
+    {
+        "name": "playid",
+        "type": "STRING"
+    },
+    {
+        "name": "course_name",
+        "type": "STRING"
+    },
+    {
+        "name": "play_date",
+        "type": "DATE"
+    }
+]

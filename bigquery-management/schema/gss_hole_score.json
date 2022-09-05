@@ -1,0 +1,98 @@
+/*
+name:   gss_hole_score
+schema: 
+*/
+[
+    {
+        "name": "playid",
+        "type": "STRING"
+    },
+    {
+        "name": "outin",
+        "type": "STRING"
+    },
+    {
+        "name": "hole",
+        "type": "INTEGER"
+    },
+    {
+        "name": "yard",
+        "type": "INTEGER"
+    },
+    {
+        "name": "par",
+        "type": "INTEGER"
+    },
+    {
+        "name": "stroke",
+        "type": "INTEGER"
+    },
+    {
+        "name": "putt",
+        "type": "INTEGER"
+    },
+    {
+        "name": "shortgame",
+        "type": "INTEGER"
+    },
+    {
+        "name": "penalty",
+        "type": "INTEGER"
+    },
+    {
+        "name": "fwkeep",
+        "type": "STRING"
+    },
+    {
+        "name": "shot_2nd_ok",
+        "type": "INTEGER"
+    },
+    {
+        "name": "longshot",
+        "type": "INTEGER"
+    },
+    {
+        "name": "paron",
+        "type": "INTEGER"
+    },
+    {
+        "name": "bogeyon",
+        "type": "INTEGER"
+    },
+    {
+        "name": "dbbogeyon",
+        "type": "INTEGER"
+    },
+    {
+        "name": "dbparoveron",
+        "type": "INTEGER"
+    },
+    {
+        "name": "scramble",
+        "type": "BOOLEAN"
+    },
+    {
+        "name": "bogeyon_base_long_diff",
+        "type": "INTEGER"
+    },
+    {
+        "name": "prime_dbbogey_over",
+        "type": "INTEGER"
+    },
+    {
+        "name": "longgame",
+        "type": "INTEGER"
+    },
+    {
+        "name": "approach",
+        "type": "INTEGER"
+    },
+    {
+        "name": "storke_diff",
+        "type": "INTEGER"
+    },
+    {
+        "name": "half",
+        "type": "STRING"
+    }
+]
