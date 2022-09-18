@@ -1,0 +1,7 @@
+2022-09-18 08:02:16.036672 (MainThread): unclosed <ssl.SSLSocket fd=11, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.11.6', 50454), raddr=('172.217.160.74', 443)>
+2022-09-18 08:02:16.037268 (MainThread): unclosed <ssl.SSLSocket fd=13, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.11.6', 50456), raddr=('172.217.160.74', 443)>
+2022-09-18 08:05:40.753585 (MainThread): unclosed <ssl.SSLSocket fd=11, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.11.6', 50714), raddr=('172.217.160.74', 443)>
+2022-09-18 08:05:40.755050 (MainThread): unclosed <ssl.SSLSocket fd=13, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.11.6', 50717), raddr=('172.217.160.74', 443)>
+2022-09-18 08:10:25.313240 (MainThread): unclosed <ssl.SSLSocket fd=11, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.11.6', 51005), raddr=('172.217.160.74', 443)>
+2022-09-18 08:10:25.315051 (MainThread): unclosed <ssl.SSLSocket fd=13, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.11.6', 51007), raddr=('172.217.160.74', 443)>
+2022-09-18 08:10:25.316850 (MainThread): unclosed <ssl.SSLSocket fd=19, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.11.6', 51009), raddr=('172.217.160.74', 443)>
