@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: src_source_gss
+    database: golf-db-361606
+    schema: source
+    tables:
+      - name: gss_hole_score
+      - name: gss_play
