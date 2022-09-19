@@ -8,5 +8,6 @@ USER root
 WORKDIR /dbt
 COPY --from=builder /app/server ./
 COPY script.sh ./
+COPY dbt_jobs ./
 
 ENTRYPOINT "./server"
