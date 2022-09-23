@@ -17,3 +17,8 @@ steps:
   - 'asia-northeast1'
 images:
 - 'gcr.io/$PROJECT_ID/golf-db-dbt-ci:$COMMIT_SHA'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+timeout: 1200s
+tags: ['dbt']
