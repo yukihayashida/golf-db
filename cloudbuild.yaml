@@ -22,3 +22,6 @@ options:
   logging: CLOUD_LOGGING_ONLY
 timeout: 1200s
 tags: ['dbt']
+substitutions:
+  _DBT_VERSION: '1.0.0'
+  _DBT_TARGET: 'prod'
