@@ -2,8 +2,8 @@
 
 echo "script start."
 
-echo `pwd`
+echo `ls`
 
-dbt run --profiles-dir .
+dbt run --target ${_DBT_TARGET} --profiles-dir .
 
 echo "script end."
