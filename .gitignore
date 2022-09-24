@@ -4,3 +4,5 @@
 # dbt
 logs/
 target/
+dbt_packages/
+dbt_jobs/.user.yml
