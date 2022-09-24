@@ -18,6 +18,7 @@ steps:
 images:
 - 'gcr.io/$PROJECT_ID/golf-db-dbt-ci:$COMMIT_SHA'
 
+serviceAccount: 'projects/$PROJECT_ID/serviceAccounts/dbt-builder@golf-db-361606.iam.gserviceaccount.com'
 options:
   logging: CLOUD_LOGGING_ONLY
 timeout: 1200s
