@@ -1,3 +1,5 @@
+{{ config(tags=["score"]) }}
+
 SELECT
 s.*
 , p.course_name

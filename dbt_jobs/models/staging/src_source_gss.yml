@@ -4,6 +4,7 @@ sources:
   - name: src_source_gss
     database: golf-db-361606
     schema: source
+    tags: ['score']
 
     tables:
       - name: gss_hole_score
