@@ -2,7 +2,7 @@
 
 echo "script start."
 
-#dbt deps --profiles-dir .
+dbt deps --profiles-dir .
 if [[ $? == 1 ]]; then
  echo 'dbt deps is faild'
  exit 1
