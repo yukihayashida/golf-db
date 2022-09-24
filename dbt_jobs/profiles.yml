@@ -10,4 +10,16 @@ golf-db:
       threads: 3
       timeout_seconds: 300
       type: bigquery
+
+    dev:
+      dataset: staging
+      fixed_retries: 1
+      location: asia-northeast1
+      method: oauth
+      priority: interactive
+      project: golf-db-361606
+      threads: 3
+      timeout_seconds: 300
+      type: bigquery
+
   target: dev
