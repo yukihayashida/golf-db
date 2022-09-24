@@ -6,4 +6,23 @@ sources:
     schema: source
     tables:
       - name: gss_hole_score
+        description: >
+          score data by hole. outer key is playid. (from GSS Table)
+        columns:
+          - name: playid
+            tests:
+              - not_null
+              - relationships:
+                  to: source('src_source_gss', 'gss_play')
+                  field: playid
+          - name: par
+            tests:
+              - par_vaild_range
       - name: gss_play
+        description: >
+          master data what played golf course. primary key is playid. (from GSS Table)
+        columns:
+          - name: playid
+            tests:
+              - unique
+              - not_null
