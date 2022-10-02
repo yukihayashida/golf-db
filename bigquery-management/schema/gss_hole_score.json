@@ -1,6 +1,6 @@
 /*
 name:   gss_hole_score
-schema: 
+schema:
 */
 [
     {
@@ -88,7 +88,7 @@ schema:
         "type": "INTEGER"
     },
     {
-        "name": "storke_diff",
+        "name": "stroke_diff",
         "type": "INTEGER"
     },
     {
