@@ -1,0 +1,120 @@
+version: 2
+
+models:
+  - name: stg_hole_score
+
+    description: >
+      score data by hole. outer key is playid. (from GSS Table)
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - playid
+            - outin
+            - hole
+      - dbt_utils.expression_is_true:
+          expression: "par + storke_diff = stroke"
+          expression: "approach + putt = shortgame"
+          expression: "longshot + penalty = longgame"
+
+    columns:
+      - name: playid
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_play_master')
+              field: playid
+      - name: outin
+        tests:
+          - not_null
+      - name: half
+      - name: hole
+        tests:
+          - not_null
+      - name: yard
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: par
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 3
+              max_value: 7
+      - name: stroke
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: stroke_diff
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: -5
+              max_value: 10
+      - name: shortgame
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: "putt"
+      - name: approach
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: putt
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: longgame
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: longshot
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: penalty
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: fw_keep_type
+        tests:
+          - accepted_values:
+              values: ['ok', 'left', 'right', 'over', 'short', NULL]
+      - name: is_possible_second_shot
+        tests:
+          - accepted_values:
+              values: [1, 0]
+              quote: false
+      - name: is_paron
+        tests:
+          - accepted_values:
+              values: [1, 0]
+              quote: false
+      - name: is_bogeyon
+        tests:
+          - accepted_values:
+              values: [1, 0]
+              quote: false
+      - name: is_dbbogeyon
+        tests:
+          - accepted_values:
+              values: [1, 0]
+              quote: false
+      - name: is_dbparoveron
+        description: "at over +3 score green on"
+        tests:
+          - accepted_values:
+              values: [1, 0]
+              quote: false
+      - name: is_scramble
+        tests:
+          - accepted_values:
+              values: [1, 0]
+              quote: false

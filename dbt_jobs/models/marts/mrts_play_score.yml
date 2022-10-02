@@ -1,0 +1,117 @@
+version: 2
+
+models:
+  - name: mrts_play_score
+
+    description: >
+      datamart of scores from a round of golf.
+
+    config:
+      tags: ["score"]
+      alias: "play_score"
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - playid
+            - outin
+            - hole
+
+    columns:
+      - name: playid
+        description: "golf round index"
+        tests:
+          - not_null
+      - name: course_name
+        description: "played golf courses"
+        tests:
+          - not_null
+      - name: play_date
+        description: "date of played"
+        tests:
+          - not_null
+      - name: play_year
+        description: "extracted the year part from the play_date"
+        tests:
+          - not_null
+      - name: outin
+        description: "out course or in course"
+        tests:
+          - not_null
+      - name: half
+        description: "half index of golf course"
+        tests:
+          - not_null
+      - name: hole
+        description: "hole number"
+        tests:
+          - not_null
+      - name: yard
+        description: "distance of the hole (yard)"
+        tests:
+          - not_null
+      - name: par
+        description: "regulation score of the hole"
+        tests:
+          - not_null
+      - name: stroke
+        description: "score for the hole"
+        tests:
+          - not_null
+      - name: stroke_diff
+        description: "par - score"
+        tests:
+          - not_null
+      - name: score_type
+        description: "classification of scores ex. par, boggy"
+        test:
+          accepted_values:
+            values: ['ace','albatross','birdie','par','bogey','double bogey','triple bogey','over+4','else']
+      - name: shortgame
+        description: "shortgame = approach + putt"
+        tests:
+          - not_null
+      - name: approach
+        description: "aiming at the green, a shot within about 100 yards"
+        tests:
+          - not_null
+      - name: putt
+        description: "strokes on the Green"
+        tests:
+          - not_null
+      - name: longgame
+        description: "longgame = lognshot + penalty"
+        tests:
+          - not_null
+      - name: longshot
+        description: "long distance shots including tee shots"
+        tests:
+          - not_null
+      - name: penalty
+        description: "OB, hazards, and other penalties"
+        tests:
+          - not_null
+      - name: fw_keep_type
+        description: "tee shot results"
+      - name: is_possible_second_shot
+        description: "the second shot be aimed toward the green"
+      - name: is_paron
+        description: "When hit the green on the (par - 2) stroke"
+        tests:
+          - not_null
+      - name: is_bogeyon
+        description: "When hit the green on the (par - 3) stroke"
+        tests:
+          - not_null
+      - name: is_dbbogeyon
+        description: "When hit the green on the (par - 4) stroke"
+        tests:
+          - not_null
+      - name: is_dbparoveron
+        description: "When hit the green on the (par - 5) over stroke"
+        tests:
+          - not_null
+      - name: is_scramble
+        description: "When make the par other than the par on"
+        tests:
+          - not_null
