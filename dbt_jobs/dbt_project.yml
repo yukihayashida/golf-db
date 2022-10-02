@@ -18,6 +18,10 @@ clean-targets:
 require-dbt-version: [">=1.0.0", "<2.0.0"]
 
 models:
-    staging:
-      +materialized: view
-      +schema: "staging"
+  dbt_jobs:
+      staging:
+        +materialized: view
+        +schema: "staging"
+      marts:
+        +materialized: table
+        +schema: "datamart"
