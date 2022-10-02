@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: stg_play_master
+
+    description: >
+      master data what played golf course. primary key is playid. (from GSS Table)
+
+    columns:
+      - name: playid
+        tests:
+          - unique
+          - not_null
+      - name: course_name
+        tests:
+          - not_null
+      - name: play_date
+        tests:
+          - not_null

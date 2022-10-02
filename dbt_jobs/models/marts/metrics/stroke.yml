@@ -1,0 +1,18 @@
+version: 2
+metrics:
+  - name: total_stroke
+    label: Total Stroke
+    model: ref('mrts_play_score')
+    description: "The total stroke"
+
+    type: sum
+    sql: stroke
+
+    timestamp: play_date
+    time_grains: [day, month, year]
+
+    dimensions:
+      - playid
+      - course_name
+      - half
+      - par
