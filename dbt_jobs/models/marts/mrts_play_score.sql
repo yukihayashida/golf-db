@@ -12,8 +12,8 @@ s.playid
 , s.stroke
 , s.stroke_diff
 , CASE
-    WHEN par = stroke     THEN 'ace'
-    WHEN stroke_diff = -1 THEN 'albatross'
+    WHEN stroke = 1       THEN 'ace'
+    WHEN stroke_diff = -2 THEN 'albatross'
     WHEN stroke_diff = -1 THEN 'birdie'
     WHEN stroke_diff = 0  THEN 'par'
     WHEN stroke_diff = 1  THEN 'bogey'
