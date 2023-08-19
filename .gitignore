@@ -1,5 +1,6 @@
-# Mac
+# for local
 .DS_Store
+.vscode
 
 # dbt
 logs/

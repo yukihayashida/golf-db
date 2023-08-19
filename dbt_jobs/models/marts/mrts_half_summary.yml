@@ -1,0 +1,175 @@
+version: 2
+
+models:
+  - name: mrts_half_summary
+
+    description: >
+      every stats summarized by half round from mrts_play_score.
+
+    config:
+      tags: ["score", "summary"]
+      alias: "half_summary"
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - playid
+            - half    
+      - dbt_utils.expression_is_true:
+          expression:
+            - "storke_total = par_total + stroke_diff_total"
+            - "storke_total = shortgame_total + longgame_total"
+            - "shortgame_total = approach_total + putt_total"
+            - "longgame_total = longshot_total + penalty_total"
+
+    columns:
+      - name: playid
+        description: "golf round index"
+        tests:
+          - not_null
+      - name: half
+        description: "half index of golf course"
+        tests:
+          - not_null
+      - name: hole_count
+        description: "count of the hole in the half"
+        tests:
+          - not_null
+      - name: yard_total
+        description: "sum of the hole yard"
+        tests:
+          - not_null
+      - name: par_total
+        description: "sum of regulation score"
+        tests:
+          - not_null
+      - name: stroke_total
+        description: "sum of score"
+        tests:
+          - not_null
+      - name: stroke_diff_total
+        description: "sum of score diff"
+        tests:
+          - not_null
+      - name: shortgame_total
+        description: "sum of shortgame score"
+        tests:
+          - not_null
+      - name: approach_total
+        description: "sum of approach score"
+        tests:
+          - not_null
+      - name: putt_total
+        description: "sum of putting score"
+        tests:
+          - not_null
+      - name: longgame_total
+        description: "sum of longgame score"
+        tests:
+          - not_null
+      - name: longshot_total
+        description: "sum of long shot score"
+        tests:
+          - not_null
+      - name: penalty_total
+        description: "sum of penalty score"
+        tests:
+          - not_null
+      - name: par_count
+        description: "count of results that were Par"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: "hole_count"
+      - name: boggy_count
+        description: "count of results that were Boggy"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: "hole_count"          
+      - name: double_boggy_count
+        description: "count of results that were Double Boggy"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: "hole_count"
+      - name: triple_par_or_over_count
+        description: "count of results that were Triple Par or Over"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: "hole_count"
+      - name: par_under_count
+        description: "count of results that were less than Par"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: "hole_count"
+      - name: fw_keep_count
+        description: "count of results that fw_keep_type is equal OK"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: "hole_count"
+      - name: fw_error_right_count
+        description: "count of results that fw_keep_type is equal Right"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: "hole_count"
+      - name: fw_error_left_count
+        description: "count of results that fw_keep_type is equal Left"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: "hole_count"
+      - name: second_ok_count
+        description: "count of results that is_possible_second_shot is True"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: "hole_count"
+      - name: paron_count
+        description: "count of results that is_paron is True"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: "hole_count"
+      - name: bogeyon_count
+        description: "count of results that is_bogeyon is True"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: "hole_count"
+      - name: dbbogeyon_count
+        description: "count of results that is_dbbogeyon is True"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: "hole_count"
+      - name: dbparoveron_count
+        description: "count of results that is_dbparoveron is True"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: "hole_count"
+      - name: scramble_count
+        description: "count of results that is_scramble is True"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: "hole_count"
