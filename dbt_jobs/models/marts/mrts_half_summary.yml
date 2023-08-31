@@ -16,11 +16,13 @@ models:
             - playid
             - half    
       - dbt_utils.expression_is_true:
-          expression:
-            - "storke_total = par_total + stroke_diff_total"
-            - "storke_total = shortgame_total + longgame_total"
-            - "shortgame_total = approach_total + putt_total"
-            - "longgame_total = longshot_total + penalty_total"
+          expression: "par_total + stroke_diff_total = stroke_total"
+      - dbt_utils.expression_is_true:
+          expression: "shortgame_total + longgame_total = stroke_total"
+      - dbt_utils.expression_is_true:
+          expression: "approach_total + putt_total = shortgame_total"
+      - dbt_utils.expression_is_true:
+          expression: "longshot_total + penalty_total = longgame_total"
 
     columns:
       - name: playid

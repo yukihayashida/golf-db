@@ -13,8 +13,10 @@ models:
             - outin
             - hole
       - dbt_utils.expression_is_true:
-          expression: "par + storke_diff = stroke"
+          expression: "par + stroke_diff = stroke"
+      - dbt_utils.expression_is_true:
           expression: "approach + putt = shortgame"
+      - dbt_utils.expression_is_true: 
           expression: "longshot + penalty = longgame"
 
     columns:
