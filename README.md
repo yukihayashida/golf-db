@@ -7,7 +7,7 @@
 ### 入力データは2つ
 - スコアデータ
   - GDO + スコアカードの情報をGoogle Sheetsに蓄積。
-- スイングデータ
+- スイングデータ （※未対応）
   - 計測器で計測したデータを取得。
   - 計測器は主に2つ。
     - VC SC300
@@ -17,14 +17,16 @@
  
 - DataSource
   - Google Sheets
-  - CSV at Google Drive
 - DWH
   - Google BigQuery
 - ELT
-  - dbt (CLI)
+  - dbt (core)
 - Workflow
   - Cloud Run
-- BI / Analytics
+  - Cloud Scheduler （毎週月曜更新）
+- BI / Analytics （※未対応）
   - Goolgl Dataportal
+  - Cube Dev
+  - streamlit
 
 ※極力無料でやりたい
