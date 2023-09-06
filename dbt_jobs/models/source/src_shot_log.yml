@@ -1,0 +1,104 @@
+version: 2
+
+sources:
+  - name: src_shot_log
+    database: golf-db-361606
+    schema: src_shot_log
+    tags: ['shot_log']
+
+    tables:
+      - name: csv_r10_log
+        identifier: r_10_*
+        description: >
+          Garmin Approach R10's Shot logs. (from csv via fivetran)
+
+        columns:
+          - name: _line
+            description: fivetran auto create. unique number.
+
+          - name: _fivetran_synced
+            description: fivetran auto create. Synchronization date and time.
+
+          - name: atakkuanguru
+            description: アタックアングル[deg]
+
+          - name: bakkusupin
+            description: バックスピン[rpm]
+
+          - name: borusupido
+            description: ボールスピード[m/s]
+
+          - name: da_chu_fang_xiang
+            description: 打ち出し方向[deg]
+
+          - name: da_chu_jiao
+            description: 打ち出し角[deg]
+
+          - name: fesuto_upasu
+            description: フェーストゥパス[deg]
+
+          - name: he_ji_ju_li
+            description: 合計距離[yd]
+
+          - name: heddosupido
+            description: ヘッドスピード[m/s]
+
+          - name: kong_qi_mi_du
+            description: 空気密度[g/L]
+
+          - name: kurabufesu_jiao
+            description: クラブフェース角[deg]
+
+          - name: kurabupasu
+            description: クラブパス[deg]
+
+          - name: kurabutaipu
+            description: クラブタイプ
+
+          - name: kyari_fei_ju_li
+            description: キャリー飛距離[yd]
+
+          - name: kyari_pian_cha_jiao
+            description: キャリー偏差角[deg]
+
+          - name: kyari_pian_cha_ju_li
+            description: キャリー偏差距離[yd]
+
+          - name: pureiya
+            description: プレイヤー
+
+          - name: qi_wen
+            description: 気温[deg C]
+
+          - name: qi_ya
+            description: 気圧[kPa]
+
+          - name: ri_fu
+            description: 日付
+
+          - name: saidosupin
+            description: サイドスピン[rpm]
+
+          - name: sumasshufakuta
+            description: スマッシュファクター
+
+          - name: supin_liang
+            description: スピン量[rpm]
+
+          - name: supin_liang_taipu
+            description: スピン量タイプ
+
+          - name: supin_zhou
+            description: スピン軸[deg]
+
+          - name: totaru_pian_cha_jiao
+            description: トータル偏差角[deg]
+
+          - name: totaru_pian_cha_ju_li
+            description: トータル偏差距離[yd]
+
+          - name: xiang_dui_shi_du
+            description: 相対湿度[%]
+
+          - name: zui_gao_dao_da_dian
+            description: 最高到達点[m]
