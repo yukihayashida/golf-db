@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: mrts_shot_log_summary
+
+    description: >
+      summary by monthly, club from mrts_shot_log_r10
+
+    config:
+      tags: ["shot_log"]
+      alias: "shot_log_summary"
+      materialized: "incremental"
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - log_month
+            - club_type
+
+    columns:
+      - name: log_month
+        description: log time month (JST)
+        tests:
+          - not_null
+
+      - name: club_type
+        description: クラブタイプ
+        tests:
+          - not_null
