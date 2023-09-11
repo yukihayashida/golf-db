@@ -48,11 +48,12 @@ log_month
 , COUNT(DISTINCT log_date) OVER ({{ PARTITION_KEY }}) AS log_date_count
 , MAX(log_date) OVER ({{ PARTITION_KEY }}) AS last_shot_date
 
--- 平均値、中央値、最大値、最小値、第1四分位数、第3四分位数 をBigQuery形式で記述
+-- 平均値、中央値、標準偏差、最大値、最小値、第1四分位数、第3四分位数 をBigQuery形式で記述
 
 {% for COL in TARGET_COLS %}
 , AVG({{COL}}) OVER ({{ PARTITION_KEY }}) AS {{COL}}_avg
 , PERCENTILE_CONT({{COL}}, 0.5) OVER ({{ PARTITION_KEY }}) AS {{COL}}_median
+, STDDEV_POP({{COL}}) OVER ({{ PARTITION_KEY }}) AS {{COL}}_stddev
 , MAX({{COL}}) OVER ({{ PARTITION_KEY }}) AS {{COL}}_max
 , MIN({{COL}}) OVER ({{ PARTITION_KEY }}) AS {{COL}}_min
 , PERCENTILE_CONT({{COL}}, 0.25) OVER ({{ PARTITION_KEY }}) AS {{COL}}_q1
