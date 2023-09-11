@@ -1,0 +1,89 @@
+version: 2
+
+models:
+  - name: mrts_shot_log_r10
+
+    description: >
+      incremental model from stg_shot_log_r10_latest
+
+    config:
+      tags: ["shot_log"]
+      alias: "shot_log_r10"
+      materialized: "incremental"
+
+    columns:
+      - name: _fivetran_synced
+        description: fivetran synchronization date and time
+        tests:
+          - not_null
+
+      - name: log_time
+        description: play time
+        tests:
+          - not_null
+          - unique
+
+      - name: shot_number
+        description: shot index (order by log_time at a day)
+        tests:
+          - not_null
+
+      - name: club_type
+        description: クラブタイプ
+
+      - name: total_distance
+        description: 合計距離[yd]
+
+      - name: carry_distance
+        description: キャリー飛距離[yd]
+
+      - name: total_deviation_distance
+        description: トータル偏差距離[yd]
+
+      - name: carry_deviation_distance
+        description: キャリー偏差距離[yd]
+
+      - name: club_speed
+        description: ヘッドスピード[m/s]
+
+      - name: ball_speed
+        description: ボールスピード[m/s]
+
+      - name: smash_factor
+        description: スマッシュファクター
+
+      - name: launch_angle
+        description: 打ち出し角[deg]
+
+      - name: launch_direction
+        description: 打ち出し方向[deg]
+
+      - name: face_angle
+        description: クラブフェース角[deg]
+
+      - name: club_path
+        description: クラブパス[deg]
+
+      - name: back_spin
+        description: バックスピン[rpm]
+
+      - name: side_spin
+        description: サイドスピン[rpm]
+
+      - name: spin_axis
+        description: スピン軸[deg]
+
+      - name: spin_rate
+        description: スピン量[rpm]
+
+      - name: face_to_path
+        description: フェーストゥパス[deg]
+
+      - name: attack_angle
+        description: アタックアングル[deg]
+
+      - name: height_apex
+        description: 最高到達点[m]
+
+      - name: is_valid_shot
+        description: 有効なショットデータかどうか
