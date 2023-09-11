@@ -1,5 +1,5 @@
-{% macro delete_recent_shot_log_summary() %}
-    {% if is_incremental() %}
+{% macro delete_recent_shot_log_summary() -%}
+    {%- if is_incremental() -%}
         delete from {{ this }}
         where
             log_month >= 
@@ -13,5 +13,5 @@
                                 )
                     from {{ ref('mrts_shot_log_r10') }}
                 )
-    {% endif %}
-{% endmacro %}
+    {%- endif -%}
+{%- endmacro %}
