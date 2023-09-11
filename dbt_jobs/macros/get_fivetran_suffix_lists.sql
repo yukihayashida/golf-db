@@ -1,4 +1,4 @@
-{% macro get_import_tables() %}
+{% macro get_fivetran_suffix_lists() %}
 
 {% set table_suffix_query %}
 select distinct

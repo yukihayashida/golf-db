@@ -1,5 +1,5 @@
 
-{% set suffix_lists = get_import_tables() %}
+{% set suffix_lists = get_fivetran_suffix_lists() %}
 {{ log("lists length : "~suffix_lists|length, info=False) }}
 {{ log("lists contents : "~suffix_lists, info=False) }}
 
@@ -41,10 +41,13 @@ FROM
     -- 不要なレコードの削除
     pureiya IS NOT NULL
 
-    {% if suffix_lists|length > 0 %}
-    -- テーブルサフィックスの指定(対象無ければ抽出0)
-    AND _table_suffix in ('{{ suffix_lists | join("', '") }}')
-    {% else %}
-    limit 0
+    {%- if is_incremental() %}
+    -- full-refresh 指定時はすべてのレコードを対象
+        {% if suffix_lists|length > 0 %}
+        -- テーブルサフィックスの指定(対象無ければ抽出0)
+        AND _table_suffix in ('{{ suffix_lists | join("', '") }}')
+        {% else %}
+        limit 0
+        {% endif %}
     {% endif %}
 )
