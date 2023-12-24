@@ -8,9 +8,14 @@ models:
 
     config:
       tags: ["shot_log"]
-      alias: "shot_log_r10_latest"
+      alias: "shot_log_r10"
 
     columns:
+      - name: _file
+        description: source file name
+        tests:
+          - not_null
+
       - name: _fivetran_synced
         description: fivetran synchronization date and time
         tests:
@@ -83,3 +88,6 @@ models:
 
       - name: height_apex
         description: 最高到達点[m]
+
+      - name: swing_note
+        description: スイングメモ

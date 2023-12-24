@@ -7,17 +7,30 @@ sources:
     tags: ['shot_log']
 
     tables:
-      - name: csv_r10_log
-        identifier: r_10_*
+      - name: approach_r_10
         description: >
           Garmin Approach R10's Shot logs. (from csv via fivetran)
 
         columns:
+          - name: _file
+            description: fivetran auto create. source file name
+            tests:
+              - not_null
+
           - name: _line
             description: fivetran auto create. unique number.
+            tests:
+              - not_null
 
           - name: _fivetran_synced
-            description: fivetran auto create. Synchronization date and time.
+            description: fivetran auto create. fivetran synchronization date and time
+            tests:
+              - not_null
+
+          - name: _modified
+            description: fivetran auto create. file modified date and time
+            tests:
+              - not_null
 
           - name: atakkuanguru
             description: アタックアングル[deg]
@@ -90,6 +103,9 @@ sources:
 
           - name: supin_zhou
             description: スピン軸[deg]
+
+          - name: tagu
+            description: タグ
 
           - name: totaru_pian_cha_jiao
             description: トータル偏差角[deg]
