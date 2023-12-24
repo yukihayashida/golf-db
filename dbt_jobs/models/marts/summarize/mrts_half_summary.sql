@@ -12,4 +12,7 @@ FROM
 
 GROUP BY 
 playid
+, play_year
+, play_date
+, course_name
 , half
