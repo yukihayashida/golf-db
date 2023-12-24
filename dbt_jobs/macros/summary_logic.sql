@@ -1,5 +1,6 @@
 {% macro summary_logic() -%}
 
+, CAST(FLOOR(SUM(stroke)/10)*10 AS INT64) AS stroke_category
 , COUNT(hole) AS hole_count
 , SUM(yard) AS yard_total
 , SUM(par) AS par_total

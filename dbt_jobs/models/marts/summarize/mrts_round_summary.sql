@@ -1,5 +1,8 @@
 SELECT
 playid
+, play_year
+, play_date
+, course_name
 
 {{ summary_logic() }}
 
