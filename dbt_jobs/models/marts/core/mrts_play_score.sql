@@ -3,7 +3,7 @@ SELECT
 s.playid
 , p.course_name
 , p.play_date
-, FORMAT_DATE('%y', p.play_date) AS play_year
+, FORMAT_DATE('%Y', p.play_date) AS play_year
 , s.outin
 , s.half
 , s.hole

@@ -26,6 +26,22 @@ models:
         tests:
           - unique
           - not_null
+      - name: play_year
+        description: "extracted the year part from the play_date"
+        tests:
+          - not_null
+      - name: play_date
+        description: "date of played"
+        tests:
+          - not_null
+      - name: course_name
+        description: "played golf courses"
+        tests:
+          - not_null
+      - name: stroke_category
+        description: "sum of score by 10 increments" 
+        tests:
+          - not_null
       - name: hole_count
         description: "count of the hole in the round"
         tests:
