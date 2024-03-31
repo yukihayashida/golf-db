@@ -1,7 +1,8 @@
 steps:
 # build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/golf-db-dbt-ci:$COMMIT_SHA', '--build-arg SLACK_TOKEN_ELEMENTARY=$$SLACK_TOKEN_ELEMENTARY','.']
+  entrypoint: 'bash'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/golf-db-dbt-ci:$COMMIT_SHA', '--build-arg' , 'SLACK_TOKEN_ELEMENTARY="$$SLACK_TOKEN_ELEMENTARY"', '.']
   secretEnv: [ 'SLACK_TOKEN_ELEMENTARY' ]
 # push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
