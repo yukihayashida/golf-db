@@ -20,6 +20,7 @@ if [[ $? == 1 ]]; then
  exit 1
 fi
 
+echo SLACK_TOKEN_ELEMENTARY=${SLACK_TOKEN_ELEMENTARY}
 edr monitor --slack-token ${SLACK_TOKEN_ELEMENTARY} --slack-channel-name dbt-alerts
 if [[ $? == 1 ]]; then
  echo '[script.sh] elementary monitor is faild'

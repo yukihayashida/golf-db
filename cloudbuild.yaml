@@ -15,8 +15,7 @@ steps:
   - 'gcr.io/$PROJECT_ID/golf-db-dbt-ci:$COMMIT_SHA'
   - '--region'
   - 'asia-northeast1'
-  - '--set-env-vars'
-  - 'SLACK_TOKEN_ELEMENTARY=$$SLACK_TOKEN_ELEMENTARY'
+  - '--set-env-vars=SLACK_TOKEN_ELEMENTARY=$$SLACK_TOKEN_ELEMENTARY'
   secretEnv: [ 'SLACK_TOKEN_ELEMENTARY' ]
 availableSecrets:
   secretManager:
