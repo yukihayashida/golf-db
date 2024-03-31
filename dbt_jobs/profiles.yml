@@ -8,7 +8,6 @@ golf-db:
       priority: interactive
       project: golf-db-361606
       threads: 3
-      timeout_seconds: 300
       type: bigquery
 
     dev:
@@ -19,7 +18,16 @@ golf-db:
       priority: interactive
       project: golf-db-361606
       threads: 3
-      timeout_seconds: 300
       type: bigquery
 
   target: dev
+
+
+elementary:
+  outputs:
+    default:
+      type: "bigquery"
+      project: "golf-db-361606"
+      dataset: "elementary"
+      method: "oauth"  # Configure your auth method and add the required fields according to https://docs.getdbt.com/reference/warehouse-setups/bigquery-setup#authentication-methods
+      threads: 3

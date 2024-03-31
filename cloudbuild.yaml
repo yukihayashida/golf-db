@@ -15,12 +15,20 @@ steps:
   - 'gcr.io/$PROJECT_ID/golf-db-dbt-ci:$COMMIT_SHA'
   - '--region'
   - 'asia-northeast1'
+  - '--set-env-vars'
+  - 'SLACK_TOKEN_ELEMENTARY=$$SLACK_TOKEN_ELEMENTARY'
+  secretEnv: [ 'SLACK_TOKEN_ELEMENTARY' ]
+availableSecrets:
+  secretManager:
+    - versionName: "projects/$PROJECT_ID/secrets/SLACK_TOKEN_ELEMENTARY/versions/latest"
+      env: SLACK_TOKEN_ELEMENTARY  
 images:
 - 'gcr.io/$PROJECT_ID/golf-db-dbt-ci:$COMMIT_SHA'
 
 serviceAccount: 'projects/$PROJECT_ID/serviceAccounts/dbt-builder@golf-db-361606.iam.gserviceaccount.com'
 options:
-  logging: CLOUD_LOGGING_ONLY
+  logging: 'CLOUD_LOGGING_ONLY'
+  substitutionOption: 'ALLOW_LOOSE'
 timeout: 1200s
 tags: ['dbt']
 substitutions:

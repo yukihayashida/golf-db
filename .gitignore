@@ -5,5 +5,7 @@
 # dbt
 logs/
 target/
+edr_target/
 dbt_packages/
 dbt_jobs/.user.yml
+package-lock.yml
