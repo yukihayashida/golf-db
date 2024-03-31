@@ -1,7 +1,7 @@
 steps:
 - name: 'bash'
   entrypoint: bash
-  args: ['-c', 'echo', '$$SLACK_TOKEN_ELEMENTARY']
+  args: ['-c', 'echo $$SLACK_TOKEN_ELEMENTARY']
   secretEnv: [ 'SLACK_TOKEN_ELEMENTARY' ]
 # build the container image
 - name: 'gcr.io/cloud-builders/docker'
