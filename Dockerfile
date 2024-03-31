@@ -13,7 +13,4 @@ COPY dbt_jobs ./
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt
 
-ARG _SLACK_TOKEN_ELEMENTARY
-ENV SLACK_TOKEN_ELEMENTARY=$_SLACK_TOKEN_ELEMENTARY
-
 ENTRYPOINT "./server"
