@@ -7,6 +7,9 @@ views:
           # MEASURE
           - number_of_days_last_play
 
+          # TIME
+          - play_date
+
           # DIMENSIONS
           - course_name
           - score_range

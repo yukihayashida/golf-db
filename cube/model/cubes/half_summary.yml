@@ -22,7 +22,7 @@ cubes:
         type: number
 
       - name: play_date
-        sql: "{CUBE}.play_date"
+        sql: "TIMESTAMP({CUBE}.play_date, 'Asia/Tokyo')"
         type: time
 
       - name: play_year
