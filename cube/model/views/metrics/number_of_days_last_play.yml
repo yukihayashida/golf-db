@@ -1,0 +1,12 @@
+views:
+  - name: number_of_days_last_play
+
+    cubes:
+      - join_path: round_summary
+        includes:
+          # MEASURE
+          - number_of_days_last_play
+
+          # DIMENSIONS
+          - course_name
+          - score_range

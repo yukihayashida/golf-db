@@ -1,0 +1,246 @@
+cubes:
+  - name: half_summary
+    sql_table: datamart.half_summary
+    data_source: default
+
+    dimensions:
+      - name: playid_half
+        sql: "{CUBE}.playid || '-' || {CUBE}.half"
+        type: string
+        primaryKey: true
+
+      - name: playid
+        sql: "{CUBE}.playid"
+        type: string
+
+      - name: yard
+        sql: "{CUBE}.yard_total"
+        type: number
+
+      - name: score_range
+        sql: "cast(floor({CUBE}.stroke_total/10) * 10 as int64)"
+        type: number
+
+      - name: play_date
+        sql: "{CUBE}.play_date"
+        type: time
+
+      - name: play_year
+        sql: "{CUBE}.play_year"
+        type: number
+
+      - name: course_name
+        sql: "{CUBE}.course_name"
+        type: string
+
+    measures:
+      - name: count
+        type: count
+
+      - name: hole_count
+        sql: "{CUBE}.hole_count"
+        type: sum
+
+      - name: score
+        sql: "{CUBE}.stroke_total"
+        type: sum 
+
+      - name: best_score
+        sql: "{CUBE}.stroke_total"
+        type: min
+
+      - name: stroke_diff
+        sql: "{CUBE}.stroke_diff_total"
+        type: sum
+
+      - name: avg_stroke_diff
+        sql: "{CUBE}.stroke_diff_total"
+        type: avg
+
+      - name: shortgame
+        sql: "{CUBE}.shortgame_total"
+        type: sum
+
+      - name: best_shortgame
+        sql: "{CUBE}.shortgame_total"
+        type: min
+
+      - name: approach
+        sql: "{CUBE}.approach_total"
+        type: sum
+
+      - name: best_approach
+        sql: "{CUBE}.approach_total"
+        type: min
+
+      - name: putt
+        sql: "{CUBE}.putt_total"
+        type: sum
+
+      - name: best_putt
+        sql: "{CUBE}.putt_total"
+        type: min
+
+      - name: longgame
+        sql: "{CUBE}.longgame_total"
+        type: sum
+
+      - name: best_longgame
+        sql: "{CUBE}.longgame_total"
+        type: min
+
+      - name: longshot
+        sql: "{CUBE}.longshot_total"
+        type: sum
+
+      - name: best_longshot
+        sql: "{CUBE}.longshot_total"
+        type: min
+
+      - name: penalty
+        sql: "{CUBE}.penalty_total"
+        type: sum
+
+      - name: best_penalty
+        sql: "{CUBE}.penalty_total"
+        type: min
+
+      - name: par_count
+        sql: "{CUBE}.par_count"
+        type: sum
+
+      - name: par_rate
+        sql: "{par_count} / {hole_count} * 100"
+        type: number
+        format: percent
+
+      - name: boggy_count
+        sql: "{CUBE}.boggy_count"
+        type: sum
+
+      - name: boggy_rate
+        sql: "{boggy_count} / {hole_count} * 100"
+        type: number
+        format: percent
+
+      - name: boggy_under_count
+        sql: "{CUBE}.boggy_count + {CUBE}.par_count"
+        type: number
+
+      - name: boggy_under_rate
+        sql: "{boggy_under_count} / {count} * 100"
+        type: number
+        format: percent
+
+      - name: double_boggy_count
+        sql: "{CUBE}.double_boggy_count"
+        type: sum
+
+      - name: double_boggy_rate
+        sql: "{double_boggy_count} / {hole_count} * 100"
+        type: number
+        format: percent
+
+      - name: triple_par_or_over_count
+        sql: "{CUBE}.triple_par_or_over_count"
+        type: sum
+
+      - name: triple_par_or_over_rate
+        sql: "{triple_par_or_over_count} / {hole_count} * 100"
+        type: number
+        format: percent
+
+      - name: par_under_count
+        sql: "{CUBE}.par_under_count"
+        type: sum
+
+      - name: par_under_rate
+        sql: "{par_under_count} / {hole_count} * 100"
+        type: number
+        format: percent
+
+      - name: fw_keep_count
+        sql: "{CUBE}.fw_keep_count"
+        type: sum
+
+      - name: fw_keep_rate
+        sql: "{fw_keep_count} / {hole_count} * 100"
+        type: number
+        format: percent
+
+      - name: fw_error_right_count
+        sql: "{CUBE}.fw_error_right_count"
+        type: sum
+
+      - name: fw_error_right_rate
+        sql: "{fw_error_right_count} / {hole_count} * 100"
+        type: number
+        format: percent
+
+      - name: fw_error_left_count
+        sql: "{CUBE}.fw_error_left_count"
+        type: sum
+
+      - name: fw_error_left_rate
+        sql: "{fw_error_left_count} / {hole_count} * 100"
+        type: number
+        format: percent
+
+      - name: second_ok_count
+        sql: "{CUBE}.second_ok_count"
+        type: sum
+
+      - name: second_ok_rate
+        sql: "{second_ok_count} / {hole_count} * 100"
+        type: number
+        format: percent
+
+      - name: paron_count
+        sql: "{CUBE}.paron_count"
+        type: sum
+
+      - name: paron_rate
+        sql: "{paron_count} / {hole_count} * 100"
+        type: number
+        format: percent
+
+      - name: bogeyon_count
+        sql: "{CUBE}.bogeyon_count"
+        type: sum
+
+      - name: bogeyon_rate
+        sql: "{bogeyon_count} / {hole_count} * 100"
+        type: number
+        format: percent
+
+      - name: dbbogeyon_count
+        sql: "{CUBE}.dbbogeyon_count"
+        type: sum
+
+      - name: dbbogeyon_rate
+        sql: "{dbbogeyon_count} / {hole_count} * 100"
+        type: number
+        format: percent
+
+      - name: dbparoveron_count
+        sql: "{CUBE}.dbparoveron_count"
+        type: sum
+
+      - name: dbparoveron_rate
+        sql: "{dbparoveron_count} / {hole_count} * 100"
+        type: number
+        format: percent
+
+      - name: scramble_count
+        sql: "{CUBE}.scramble_count"
+        type: sum
+
+      - name: scramble_rate
+        sql: "{scramble_count} / {hole_count} * 100"
+        type: number
+        format: percent
+
+    joins:
+      - name: play_score
+        relationship: one_to_many
+        sql: "{CUBE.playid} = {play_score.playid}"
