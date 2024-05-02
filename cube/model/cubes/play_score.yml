@@ -1,0 +1,196 @@
+cubes:
+  - name: play_score
+    sql_table: datamart.play_score
+    data_source: default
+
+    dimensions:
+      - name: id
+        sql:
+          "{CUBE}.playid || '-' || {CUBE}.half || '-' || {CUBE}.hole"
+        type: string
+        primary_key: true
+
+      - name: playid
+        sql: "{CUBE}.playid"
+        type: string
+
+      - name: course_name
+        sql: "{CUBE}.course_name"
+        type: string
+
+      - name: play_year
+        sql: play_year
+        type: string
+
+      - name: outin
+        sql: outin
+        type: string
+
+      - name: half
+        sql: half
+        type: string
+
+      - name: hole
+        sql: hole
+        type: string
+
+      - name: yard
+        sql: yard
+        type: number
+
+      - name: par
+        sql: par
+        type: number
+
+      - name: stroke
+        sql: "{CUBE}.stroke"
+        type: number
+
+      - name: stroke_diff
+        sql: "{CUBE}.stroke_diff"
+        type: number
+
+      - name: score_type
+        sql: score_type
+        type: string
+
+      - name: fw_keep_type
+        sql: fw_keep_type
+        type: string
+
+      - name: is_fw_keep
+        sql: "{CUBE}.fw_keep_type = 'ok'"
+        type: boolean
+
+      - name: is_possible_second_shot
+        sql: "{CUBE}.is_possible_second_shot = 1"
+        type: boolean
+
+      - name: is_paron
+        sql: "{CUBE}.is_paron = 1"
+        type: boolean
+
+      - name: is_bogeyon
+        sql: "{CUBE}.is_bogeyon = 1"
+        type: boolean
+
+      - name: is_dbbogeyon
+        sql: "{CUBE}.is_dbbogeyon = 1"
+        type: boolean
+
+      - name: is_dbparoveron
+        sql: "{CUBE}.is_dbparoveron = 1"
+        type: boolean
+
+      - name: is_scramble
+        sql: "{CUBE}.is_scramble = 1"
+        type: boolean
+
+      - name: play_date
+        sql: TIMESTAMP({CUBE}.play_date)
+        type: time
+
+    measures:
+      - name: count
+        type: count
+
+      - name: score
+        sql: "{CUBE}.stroke"
+        type: sum 
+
+      - name: shortgame
+        sql: "{CUBE}.shortgame"
+        type: sum
+
+      - name: approach
+        sql: "{CUBE}.approach"
+        type: sum
+
+      - name: putt
+        sql: "{CUBE}.putt"
+        type: sum
+
+      - name: longgame
+        sql: "{CUBE}.longgame"
+        type: sum
+
+      - name: longshot
+        sql: "{CUBE}.longshot"
+        type: sum
+
+      - name: penalty
+        sql: "{CUBE}.penalty"
+        type: sum
+
+      - name: par_count
+        sql: "{CUBE}.playid"
+        type: count
+        filters:
+          - sql: "{CUBE}.stroke_diff = 0"
+
+      - name: par_rate
+        sql: "{par_count} / {count} * 100"
+        type: number
+        format: percent
+
+      - name: boggy_count
+        sql: "{CUBE}.playid"
+        type: count
+        filters:
+          - sql: "{CUBE}.stroke_diff = 1"
+
+      - name: boggy_rate
+        sql: "{boggy_count} / {count} * 100"
+        type: number
+        format: percent
+
+      - name: boggy_under_count
+        sql: "{CUBE}.playid"
+        type: count
+        filters:
+          - sql: "{CUBE}.stroke_diff <= 1"
+
+      - name: boggy_under_rate
+        sql: "{boggy_under_count} / {count} * 100"
+        type: number
+        format: percent
+
+      - name: double_boggy_count
+        sql: "{CUBE}.playid"
+        type: count
+        filters:
+          - sql: "{CUBE}.stroke_diff = 2"
+
+      - name: par_over_3_count
+        sql: "{CUBE}.playid"
+        type: count
+        filters:
+          - sql: "{CUBE}.stroke_diff >= 3"
+
+      - name: par_under_1_count
+        sql: "{CUBE}.playid"
+        type: count
+        filters:
+          - sql: "{CUBE}.stroke_diff <= -1"
+
+      - name: fw_keep_count
+        sql: "{CUBE}.playid"
+        type: count
+        filters:
+          - sql: "{CUBE}.fw_keep_type = 'ok'"
+
+      - name: fw_keep_rate
+        sql: "{fw_keep_count} / {count} * 100"
+        type: number
+        format: percent
+
+      - name: round_count
+        sql: "{CUBE}.playid"
+        type: count_distinct
+        rolling_window:
+          trailing: unbounded
+
+    segments:
+      - name: fw_keep
+        sql: >
+          {CUBE}.fw_keep_type = 'ok'

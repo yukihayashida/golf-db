@@ -1,0 +1,39 @@
+views:
+  - name: play_stats
+
+    cubes:
+      - join_path: round_summary
+        includes:
+          # MEASURE
+          - best_score
+          - name: count
+            alias: round_count
+          - number_of_days_last_play
+          - score
+          - shortgame
+          - approach
+          - putt
+          - longgame
+          - longshot
+          - penalty
+          - fw_keep_rate
+          - second_ok_rate
+          - bogeyon_under_rate
+          - name: sg_clear_rate_target90
+            alias: sg_clear_rate
+          - name: lg_clear_rate_target90
+            alias: lg_clear_rate
+
+          # TIME
+          - play_date
+
+          # DIMENSIONS
+          - play_year
+          - course_name
+          - score_range
+
+      - join_path: half_summary
+        includes:
+          # MEASURE
+          - name: best_score
+            alias: half_best_score

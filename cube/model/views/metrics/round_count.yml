@@ -1,0 +1,16 @@
+views:
+  - name: round_count
+
+    cubes:
+      - join_path: round_summary
+        includes:
+          # MEASURE
+          - count
+
+          # TIME
+          - play_date
+
+          # DIMENSIONS
+          - play_year
+          - course_name
+          - score_range

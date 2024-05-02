@@ -1,0 +1,16 @@
+views:
+  - name: half_best_score
+
+    cubes:
+      - join_path: half_summary
+        includes:
+          # MEASURE
+          - best_score
+
+          # TIME
+          - play_date
+
+          # DIMENSIONS
+          - play_year
+          - course_name
+          - score_range
