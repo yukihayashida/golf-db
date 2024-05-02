@@ -1,0 +1,63 @@
+name: generate edr report
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * 1" # JST 9:00
+
+jobs:
+  main:
+    env:
+      PYTHON_VERSION: 3.11
+    runs-on: ubuntu-latest
+    permissions:
+      contents: "read"
+      id-token: "write"
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Set Up Auth
+        uses: "google-github-actions/auth@v1"
+        with:
+          token_format: "access_token"
+          workload_identity_provider: "projects/hogehoge/locations/global/workloadIdentityPools/hogehoge/providers/hogehoge"
+          service_account: "hogehoge@hogehoge.iam.gserviceaccount.com"
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install dbt-core dbt-bigquery elementary-data
+
+      - name: generate report
+        run: |
+          # 本来以下コマンドでslackへの連携ができるはずだが、ローカルでもGHA上でも動かないため
+          # 一旦reportコマンドで生成し、そのファイルを送信することにする
+          # edr send-report --slack-token ${ELEMENTARY_SLACK_BOT_TOKEN} --slack-channel-name ${ELEMENTARY_NOTIFICATION_CHANNEL}
+          edr report
+
+      - name: Upload report file to Slack
+        env:
+          SLACK_API_TOKEN: ${{ secrets.ELEMENTARY_SLACK_BOT_TOKEN }}
+        run: |
+          curl -F file=@./edr_target/elementary_report.html -F channels=${{ vars.ELEMENTARY_NOTIFICATION_CHANNEL }} -F token=$SLACK_API_TOKEN https://slack.com/api/files.upload
+
+      - name: Notify Failure
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,job,took,eventName,ref,workflow
+          mention: "subteam^SXXXXXXXXX"
+          if_mention: failure
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_GITHUB_FAILURE_WEBHOOK }}
+        if: failure()
