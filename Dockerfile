@@ -1,4 +1,4 @@
-FROM golang:1.13 as builder
+FROM golang:1.13 AS builder
 WORKDIR /app
 COPY invoke.go ./
 RUN CGO_ENABLED=0 GOOS=linux go build -v -o server
@@ -13,4 +13,4 @@ COPY dbt/dbt_jobs ./
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt
 
-ENTRYPOINT "./server"
+ENTRYPOINT ["./server"]
