@@ -8,7 +8,7 @@ USER root
 WORKDIR /dbt
 COPY --from=builder /app/server ./
 COPY script.sh ./
-COPY dbt_jobs ./
+COPY dbt/dbt_jobs ./
 
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt
