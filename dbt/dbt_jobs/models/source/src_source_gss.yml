@@ -13,18 +13,20 @@ sources:
 
         tests:
           - dbt_utils.unique_combination_of_columns:
-              combination_of_columns:
-                - playid
-                - outin
-                - hole
+              arguments:
+                combination_of_columns:
+                  - playid
+                  - outin
+                  - hole
 
         columns:
           - name: playid
             tests:
               - not_null
               - relationships:
-                  to: source('src_source_gss', 'gss_play')
-                  field: playid
+                  arguments:
+                    to: source('src_source_gss', 'gss_play')
+                    field: playid
           - name: outin
             tests:
               - not_null
@@ -35,33 +37,39 @@ sources:
             tests:
               - not_null
               - dbt_utils.accepted_range:
-                  min_value: 0
+                  arguments:
+                    min_value: 0
           - name: par
             tests:
               - not_null
               - dbt_utils.accepted_range:
-                  min_value: 3
-                  max_value: 7
+                  arguments:
+                    min_value: 3
+                    max_value: 7
           - name: stroke
             tests:
               - not_null
               - dbt_utils.accepted_range:
-                  min_value: 0
+                  arguments:
+                    min_value: 0
           - name: putt
             tests:
               - not_null
               - dbt_utils.accepted_range:
-                  min_value: 0
+                  arguments:
+                    min_value: 0
           - name: shortgame
             tests:
               - not_null
               - dbt_utils.accepted_range:
-                  min_value: "putt"
+                  arguments:
+                    min_value: "putt"
           - name: penalty
             tests:
               - not_null
               - dbt_utils.accepted_range:
-                  min_value: 0
+                  arguments:
+                    min_value: 0
 
       - name: gss_play
         description: >

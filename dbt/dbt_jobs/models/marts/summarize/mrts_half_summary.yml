@@ -12,17 +12,22 @@ models:
 
     tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - playid
-            - half    
+          arguments:
+            combination_of_columns:
+              - playid
+              - half    
       - dbt_utils.expression_is_true:
-          expression: "par_total + stroke_diff_total = stroke_total"
+          arguments:
+            expression: "par_total + stroke_diff_total = stroke_total"
       - dbt_utils.expression_is_true:
-          expression: "shortgame_total + longgame_total = stroke_total"
+          arguments:
+            expression: "shortgame_total + longgame_total = stroke_total"
       - dbt_utils.expression_is_true:
-          expression: "approach_total + putt_total = shortgame_total"
+          arguments:
+            expression: "approach_total + putt_total = shortgame_total"
       - dbt_utils.expression_is_true:
-          expression: "longshot_total + penalty_total = longgame_total"
+          arguments:
+            expression: "longshot_total + penalty_total = longgame_total"
 
     columns:
       - name: playid
@@ -98,96 +103,110 @@ models:
         tests:
           - not_null
           - dbt_utils.accepted_range:
-              min_value: 0
-              max_value: "hole_count"
+              arguments:
+                min_value: 0
+                max_value: "hole_count"
       - name: boggy_count
         description: "count of results that were Boggy"
         tests:
           - not_null
           - dbt_utils.accepted_range:
-              min_value: 0
-              max_value: "hole_count"          
+              arguments:
+                min_value: 0
+                max_value: "hole_count"          
       - name: double_boggy_count
         description: "count of results that were Double Boggy"
         tests:
           - not_null
           - dbt_utils.accepted_range:
-              min_value: 0
-              max_value: "hole_count"
+              arguments:
+                min_value: 0
+                max_value: "hole_count"
       - name: triple_par_or_over_count
         description: "count of results that were Triple Par or Over"
         tests:
           - not_null
           - dbt_utils.accepted_range:
-              min_value: 0
-              max_value: "hole_count"
+              arguments:
+                min_value: 0
+                max_value: "hole_count"
       - name: par_under_count
         description: "count of results that were less than Par"
         tests:
           - not_null
           - dbt_utils.accepted_range:
-              min_value: 0
-              max_value: "hole_count"
+              arguments:
+                min_value: 0
+                max_value: "hole_count"
       - name: fw_keep_count
         description: "count of results that fw_keep_type is equal OK"
         tests:
           - not_null
           - dbt_utils.accepted_range:
-              min_value: 0
-              max_value: "hole_count"
+              arguments:
+                min_value: 0
+                max_value: "hole_count"
       - name: fw_error_right_count
         description: "count of results that fw_keep_type is equal Right"
         tests:
           - not_null
           - dbt_utils.accepted_range:
-              min_value: 0
-              max_value: "hole_count"
+              arguments:
+                min_value: 0
+                max_value: "hole_count"
       - name: fw_error_left_count
         description: "count of results that fw_keep_type is equal Left"
         tests:
           - not_null
           - dbt_utils.accepted_range:
-              min_value: 0
-              max_value: "hole_count"
+              arguments:
+                min_value: 0
+                max_value: "hole_count"
       - name: second_ok_count
         description: "count of results that is_possible_second_shot is True"
         tests:
           - not_null
           - dbt_utils.accepted_range:
-              min_value: 0
-              max_value: "hole_count"
+              arguments:
+                min_value: 0
+                max_value: "hole_count"
       - name: paron_count
         description: "count of results that is_paron is True"
         tests:
           - not_null
           - dbt_utils.accepted_range:
-              min_value: 0
-              max_value: "hole_count"
+              arguments:
+                min_value: 0
+                max_value: "hole_count"
       - name: bogeyon_count
         description: "count of results that is_bogeyon is True"
         tests:
           - not_null
           - dbt_utils.accepted_range:
-              min_value: 0
-              max_value: "hole_count"
+              arguments:
+                min_value: 0
+                max_value: "hole_count"
       - name: dbbogeyon_count
         description: "count of results that is_dbbogeyon is True"
         tests:
           - not_null
           - dbt_utils.accepted_range:
-              min_value: 0
+              arguments:
+                min_value: 0
               max_value: "hole_count"
       - name: dbparoveron_count
         description: "count of results that is_dbparoveron is True"
         tests:
           - not_null
           - dbt_utils.accepted_range:
-              min_value: 0
-              max_value: "hole_count"
+              arguments:
+                min_value: 0
+                max_value: "hole_count"
       - name: scramble_count
         description: "count of results that is_scramble is True"
         tests:
           - not_null
           - dbt_utils.accepted_range:
-              min_value: 0
-              max_value: "hole_count"
+              arguments:
+                min_value: 0
+                max_value: "hole_count"
