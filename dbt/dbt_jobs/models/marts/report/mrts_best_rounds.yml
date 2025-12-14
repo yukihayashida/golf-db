@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: mrts_best_rounds
+
+    description: >
+      Summarized best scores over time.
+
+    config:
+      tags: ["score", "report"]
+      alias: "best_round_shift"
+
+    columns:
+      - name: playid
+        description: "golf round index"
+        tests:
+          - unique
+          - not_null
+      - name: play_date
+        description: "date of played"
+        tests:
+          - not_null
+      - name: best_score
+        description: "best score of the round"
+        tests:
+          - not_null
+      - name: days_since_last_best
+        description: "days since last best score"
