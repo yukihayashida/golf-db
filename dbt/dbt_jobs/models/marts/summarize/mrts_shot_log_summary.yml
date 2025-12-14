@@ -13,9 +13,10 @@ models:
 
     tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - log_month
-            - club_type
+          arguments:
+            combination_of_columns:
+              - log_month
+              - club_type
 
     columns:
       - name: log_month

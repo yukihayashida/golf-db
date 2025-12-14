@@ -12,10 +12,11 @@ models:
 
     tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - playid
-            - half
-            - hole
+          arguments:
+            combination_of_columns:
+              - playid
+              - half
+              - hole
 
     columns:
       - name: playid
@@ -66,7 +67,8 @@ models:
         description: "classification of scores ex. par, boggy"
         test:
           accepted_values:
-            values: ['ace','albatross','birdie','par','bogey','double bogey','triple bogey','over+4','else']
+            arguments:
+              values: ['ace','albatross','birdie','par','bogey','double bogey','triple bogey','over+4','else']
       - name: shortgame
         description: "shortgame = approach + putt"
         tests:
